@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #181818;
+    color: #e0e0e0;
+}
+.container {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #23272a;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #111;
+}
+h2 {
+    text-align: center;
+    color: #fff;
+}
+label {
+    display: block;
+    margin-top: 15px;
+    color: #b9bbbe;
+}
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background: #2c2f33;
+    color: #e0e0e0;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #7289da;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+button:hover {
+    background: #5865f2;
+}
+.flash {
+    color: #ff5555;
+    text-align: center;
+    margin-bottom: 10px;
+}

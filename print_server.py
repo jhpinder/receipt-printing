@@ -15,15 +15,7 @@ HTML_FORM = '''
 <head>
     <meta charset="UTF-8">
     <title>Print Task</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f7f7f7; }
-        .container { max-width: 400px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
-        h2 { text-align: center; }
-        label { display: block; margin-top: 15px; }
-        input, textarea { width: 100%; padding: 8px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; }
-        button { margin-top: 20px; width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 16px; }
-        .flash { color: red; text-align: center; margin-bottom: 10px; }
-    </style>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <div class="container">
