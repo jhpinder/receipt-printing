@@ -7,7 +7,8 @@ import tempfile
 app = Flask(__name__)
 import secrets
 app.secret_key = secrets.token_urlsafe(32)  # Secure random secret key for flash messages
-printer_ip = "192.168.50.210"
+# Allow overriding printer IP via environment variable PRINTER_IP (defaults to previous hard-coded value)
+printer_ip = os.getenv("PRINTER_IP", "192.168.50.210")
 
 from flask import render_template
 
