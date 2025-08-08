@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  receipt:
+    build: .
+    ports:
+      - "5050:5050"
+    environment:
+      PRINTER_IP: 192.168.50.210
+    restart: unless-stopped
