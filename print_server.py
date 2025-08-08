@@ -9,38 +9,7 @@ import secrets
 app.secret_key = secrets.token_urlsafe(32)  # Secure random secret key for flash messages
 printer_ip = "192.168.50.210"
 
-HTML_FORM = '''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Print Task</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Print Task</h2>
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <div class="flash">{{ messages[0] }}</div>
-          {% endif %}
-        {% endwith %}
-        <form method="post" enctype="multipart/form-data">
-            <label for="task_name">Task Name:</label>
-            <input type="text" id="task_name" name="task_name" required>
-
-            <label for="due_date">Due Date:</label>
-            <input type="date" id="due_date" name="due_date" required>
-
-            <label for="image">Image (optional):</label>
-            <input type="file" id="image" name="image" accept="image/*">
-
-            <button type="submit">Print</button>
-        </form>
-    </div>
-</body>
-</html>
-'''
+from flask import render_template
 
 @app.route('/', methods=['GET', 'POST'])
 def print_task():
@@ -87,7 +56,7 @@ def print_task():
         flash("Printed successfully!")
         return redirect(url_for('print_task'))
 
-    return render_template_string(HTML_FORM)
+    return render_template('print_form.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
