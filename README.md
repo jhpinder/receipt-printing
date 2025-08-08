@@ -33,21 +33,6 @@ docker run --rm -e PRINTER_IP=192.168.50.210 -p 5050:5050 receipt-printing:lates
 ## Updating Printer IP Permanently
 Edit `PRINTER_IP` env in Docker run command or set in an `.env` (compose).
 
-## Docker Compose (optional)
-Example `docker-compose.yml`:
-```yaml
-services:
-  receipt:
-    build: .
-    ports:
-      - "5050:5050"
-    environment:
-      PRINTER_IP: 192.168.50.210
-```
-Run:
-```bash
-docker compose up --build
-```
 
 ## Notes
 - Ensure the container can reach the printer IP on the network (bridge vs host networking).
