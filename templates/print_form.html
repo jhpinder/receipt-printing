@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Print Task</title>
-    <link rel="stylesheet" href="/static/style.css">
+  <title>Print Task</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
-    <div class="container">
-        <h2>Print Task</h2>
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <div class="flash">{{ messages[0] }}</div>
-          {% endif %}
-        {% endwith %}
-        <form method="post" enctype="multipart/form-data">
-            <label for="task_name">Task Name:</label>
-            <input type="text" id="task_name" name="task_name" required>
+  <div class="container">
+    <h2>Print Task</h2>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash">{{ messages[0] }}</div>
+    {% endif %}
+    {% endwith %}
+    <form method="post" enctype="multipart/form-data" autocomplete="off">
+      <label for="task_name">Task Name:</label>
+      <input type="text" id="task_name" name="task_name" required autocomplete="off">
 
-            <label for="due_date">Due Date:</label>
-            <input type="date" id="due_date" name="due_date" required>
+      <label for="details">Details:</label>
+      <textarea id="details" name="details" rows="4" required autocomplete="off"></textarea>
 
-            <label for="image">Image (optional):</label>
-            <input type="file" id="image" name="image" accept="image/*">
-            <br>
-            <button type="submit">Print</button>
-        </form>
-    </div>
+      <label for="due_date">Due Date:</label>
+      <input type="date" id="due_date" name="due_date" required autocomplete="off">
+
+      <label for="image">Image (optional):</label>
+      <input type="file" id="image" name="image" accept="image/*" autocomplete="off">
+      <br>
+      <button type="submit">Print</button>
+    </form>
+  </div>
 </body>
+
 </html>

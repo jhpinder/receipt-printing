@@ -1,87 +1,119 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #181818;
-    color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  background: #181818;
+  color: #e0e0e0;
 }
+
 .container {
-    max-width: 400px;
-    margin: 40px auto;
-    background: #23272a;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px #111;
+  max-width: 400px;
+  margin: 40px auto;
+  background: #23272a;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #111;
 }
 
 @media (max-width: 600px) {
-    html, body {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        font-size: 18px; /* larger base for readability */
-    }
-    .container {
-        max-width: none;
-        margin: 2%;
-        padding: 16px;
-        border-radius: 10px;
-    }
-    h2 { font-size: 1.6em; }
-    label { font-size: 1.1em; }
-    input, textarea {
-        width: 100%;
-        font-size: 1.1em;
-        padding: 12px;
-    }
-    button {
-        font-size: 1.1em;
-        margin-top: auto !important;
-        padding: 14px;
-    }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-size: 18px;
+    /* larger base for readability */
+  }
+
+  .container {
+    max-width: none;
+    margin: 2%;
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  label {
+    font-size: 1.1em;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 12px;
+  }
+
+  input[type="date"] {
+    width: 100vw;
+  }
+
+  button {
+    font-size: 1.1em;
+    margin-top: auto !important;
+    padding: 14px;
+  }
 }
+
 h2 {
-    text-align: center;
-    color: #fff;
+  text-align: center;
+  color: #fff;
 }
-label {
-    display: block;
-    margin: 15px 0 0 0;
-    color: #b9bbbe;
-    width: 100%;
-    max-width: 100%;
-    text-align: left;
-    box-sizing: border-box;
+
+input,
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
 }
-input, textarea {
-    display: block;
-    margin: 5px 0 0 0;
-    width: 100%;
-    max-width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #444;
-    background: #2c2f33;
-    color: #e0e0e0;
-    box-sizing: border-box;
+
+label,
+textarea {
+  display: block;
+  margin: 15px 0 0 0;
+  color: #b9bbbe;
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+  box-sizing: border-box;
 }
+
+input,
+textarea {
+  display: block;
+  margin: 5px 0 0 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #2c2f33;
+  color: #e0e0e0;
+  box-sizing: border-box;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+  filter: invert(1);
 }
+
 button {
-    margin-top: 20px;
-    width: 100%;
-    padding: 10px;
-    background: #7289da;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: background 0.2s;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background: #7289da;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.2s;
 }
+
 button:hover {
-    background: #5865f2;
+  background: #5865f2;
 }
+
 .flash {
-    color: #ff5555;
-    text-align: center;
-    margin-bottom: 10px;
+  color: #ff5555;
+  text-align: center;
+  margin-bottom: 10px;
 }
