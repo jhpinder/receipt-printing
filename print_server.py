@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, request, redirect, url_for, flash
+from flask import Flask, request, redirect, url_for, flash
 from escpos.printer import Network
 from PIL import Image
 import os
