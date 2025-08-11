@@ -25,7 +25,8 @@
       <textarea id="details" name="details" rows="4" autocomplete="off"></textarea>
 
       <label for="due_date">Due Date:</label>
-      <input type="date" id="due_date" name="due_date" required autocomplete="off">
+      <input type="date" id="due_date" name="due_date" required autocomplete="off"
+        value="{{ (request.form.get('due_date') or (now.strftime('%Y-%m-%d'))) if request else now.strftime('%Y-%m-%d') }}">
 
       <label for="image">Image (optional):</label>
       <input type="file" id="image" name="image" accept="image/*" autocomplete="off">
