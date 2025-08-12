@@ -17,6 +17,7 @@ from flask import render_template
 def print_task():
     if request.method == 'POST':
         task_name = request.form.get('task_name')
+        assignee = request.form.get('assignee')
         details = request.form.get('details')
         due_date = request.form.get('due_date')
         # Format due date as MM-dd-yyyy for printing
@@ -41,8 +42,9 @@ def print_task():
         wrapped_task_name = textwrap.fill(task_name or '', width=max_width).strip()
         wrapped_details = '\n'.join(textwrap.wrap(details or '', width=max_width)).strip()
         wrapped_details = f"Details: {wrapped_details}\n\n" if wrapped_details else ''
+        assignee_text = f"Assignee: {assignee}\n\n" if assignee else ''
         try:
-            printer.text(f"Task: {wrapped_task_name}\n\n{wrapped_details}Due: {formatted_due_date}\n\n")
+            printer.text(f"Task: {wrapped_task_name}\n\n{assignee_text}{wrapped_details}Due: {formatted_due_date}\n\n")
         except Exception as e:
             flash(f"Failed to print text: {e}")
             return redirect(url_for('print_task'))
