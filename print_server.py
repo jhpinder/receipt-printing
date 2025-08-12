@@ -85,6 +85,7 @@ def print_task():
                 return redirect(url_for('print_task'))
 
         try:
+            printer.ln()
             printer.cut()
         except Exception:
             pass  # Some printers may not support cut

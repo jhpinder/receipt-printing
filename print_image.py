@@ -1,7 +1,9 @@
 import argparse
+import time
 from escpos.printer import Network
 from PIL import Image
 import sys
+import os
 
 # Parse command line arguments
 def parse_args():
@@ -24,23 +26,32 @@ def main():
     # Open, scale, and print the image
     try:
         img = Image.open(image_path)
-        # ESC/POS printers typically have a printable width of 512 pixels (adjust as needed)
         printable_width = 512
-        w_percent = (printable_width / float(img.size[0]))
-        h_size = int((float(img.size[1]) * float(w_percent)))
+        max_height = 72  # ESC/POS typical max height per image command
+
+        # Resize image to printable width, keep aspect ratio
+        w_percent = printable_width / float(img.size[0])
+        h_size = int(float(img.size[1]) * w_percent)
         img = img.resize((printable_width, h_size), Image.LANCZOS)
-        # Save to a temporary file
-        temp_path = "_temp_scaled_image.png"
-        img.save(temp_path)
-        printer.image(temp_path)
+
+        # Segment and print
+        num_segments = (img.height + max_height - 1) // max_height
+        for i in range(num_segments):
+            upper = i * max_height
+            lower = min((i + 1) * max_height, img.height)
+            segment = img.crop((0, upper, printable_width, lower))
+            temp_path = f"_temp_segment_{i}.png"
+            segment.save(temp_path)
+            printer.image(temp_path)
+            try:
+                os.remove(temp_path)
+            except Exception as remove_err:
+                print(f"Warning: could not delete temp image: {remove_err}")
+
+        time.sleep(0.1)
         printer.cut()
         print(f"Image sent to printer at {printer_ip}")
-        # Delete the temporary image file
-        import os
-        try:
-            os.remove(temp_path)
-        except Exception as remove_err:
-            print(f"Warning: could not delete temp image: {remove_err}")
+
     except Exception as e:
         print(f"Failed to print image: {e}")
         sys.exit(1)
