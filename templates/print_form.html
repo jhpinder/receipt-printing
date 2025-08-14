@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Print Task</title>
   <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
   <link rel="stylesheet" href="/static/style.css">
@@ -19,13 +19,20 @@
     {% endwith %}
     <form method="post" enctype="multipart/form-data" autocomplete="off">
       <label for="task_name">Task Name:</label>
-      <input type="text" id="task_name" name="task_name" required autocomplete="off">
+      <div style="position: relative; width: 100%;">
+        <input type="text" id="task_name" name="task_name" required autocomplete="off" style="font-family: monospace; padding-right: 2.5em; width: 100%; box-sizing: border-box;" size="36" maxlength="36" oninput="updateCharCount('task_name', 36)">
+        <span id="task_name_count" class="char-count">36</span>
+      </div>
 
       <label for="assignee">Assignee:</label>
-      <input type="text" id="assignee" name="assignee" autocomplete="off">
+      <div style="position: relative; width: 100%;">
+        <input type="text" id="assignee" name="assignee" autocomplete="off" style="font-family: monospace; padding-right: 2.5em; width: 100%; box-sizing: border-box;" size="33" maxlength="33" oninput="updateCharCount('assignee', 33)">
+        <span id="assignee_count" class="char-count">33</span>
+      </div>
 
       <label for="details">Details:</label>
-      <textarea id="details" name="details" rows="4" autocomplete="off"></textarea>
+      <textarea id="details" name="details" rows="4" cols="46" wrap="hard" style="font-family: monospace;"
+        autocomplete="off"></textarea>
 
       <label for="due_date">Due Date:</label>
       <input type="date" id="due_date" name="due_date" required autocomplete="off"
@@ -37,6 +44,19 @@
       <button type="submit">Print</button>
     </form>
   </div>
+  <script>
+    function updateCharCount(field, max) {
+      var input = document.getElementById(field);
+      var count = document.getElementById(field + '_count');
+      var left = max - input.value.length;
+      count.textContent = left;
+    }
+    // Initialize counts on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCharCount('task_name', 36);
+      updateCharCount('assignee', 33);
+    });
+  </script>
 </body>
 
 </html>

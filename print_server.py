@@ -39,12 +39,16 @@ def print_task():
         # Print text with wrapping
         import textwrap
         max_width = 42  # Typical ESC/POS printer width in characters
-        wrapped_task_name = textwrap.fill(task_name or '', width=max_width).strip()
-        wrapped_details = '\n'.join(textwrap.wrap(details or '', width=max_width)).strip()
-        wrapped_details = f"Details: {wrapped_details}\n\n" if wrapped_details else ''
+        wrapped_task_name = textwrap.fill("Task: " + (task_name or ''), width=max_width).strip()
+        # Print details exactly as entered, preserving user line breaks
+        if details:
+            details_block = f"------------------- Details -------------------\n{details}\n"
+            details_block += "------------------------------------------------\n"
+        else:
+            details_block = ''
         assignee_text = f"Assignee: {assignee}\n\n" if assignee else ''
         try:
-            printer.text(f"Task: {wrapped_task_name}\n\n{assignee_text}{wrapped_details}Due: {formatted_due_date}\n\n")
+            printer.text(f"{wrapped_task_name}\n\n{assignee_text}Due: {formatted_due_date}\n{details_block}")
         except Exception as e:
             flash(f"Failed to print text: {e}")
             return redirect(url_for('print_task'))
