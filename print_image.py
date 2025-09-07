@@ -48,7 +48,7 @@ def main():
             except Exception as remove_err:
                 print(f"Warning: could not delete temp image: {remove_err}")
 
-        time.sleep(0.1)
+        time.sleep(0.5)
         printer.cut()
         print(f"Image sent to printer at {printer_ip}")
 
