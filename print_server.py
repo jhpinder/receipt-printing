@@ -49,7 +49,7 @@ def print_task():
         assignee_text = f"Assignee: {assignee}\n\n" if assignee else ''
         try:
             printer.ln()
-            printer.text(f"{wrapped_task_name}\n\n{assignee_text}Due: {formatted_due_date}\n{details_block}")
+            printer.text(f"{wrapped_task_name}\n\n{assignee_text}Due: {formatted_due_date}\n{details_block}".encode('utf-8'))
         except Exception as e:
             flash(f"Failed to print text: {e}")
             return redirect(url_for('print_task'))
