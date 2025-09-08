@@ -49,7 +49,7 @@ def print_task():
         assignee_text = f"Assignee: {assignee}\n\n" if assignee else ''
         try:
             printer.ln()
-            printer.text(f"{wrapped_task_name}\n\n{assignee_text}Due: {formatted_due_date}\n{details_block}".encode('utf-8'))
+            printer.text(f"{wrapped_task_name}\n\n{assignee_text}Due: {formatted_due_date}\n{details_block}")
         except Exception as e:
             flash(f"Failed to print text: {e}")
             return redirect(url_for('print_task'))
@@ -92,9 +92,9 @@ def print_task():
                 return redirect(url_for('print_task'))
 
         try:
-            printer.ln(2)
+            printer.ln(3)
             printer.text(datetime.now().strftime("Printed on %m-%d-%Y at %H:%M:%S\n"))
-            printer.ln(2)
+            printer.ln()
             printer.cut()
         except Exception:
             pass  # Some printers may not support cut
