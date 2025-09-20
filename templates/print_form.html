@@ -20,19 +20,23 @@
     <form method="post" enctype="multipart/form-data" autocomplete="off">
       <label for="task_name">Task Name:</label>
       <div style="position: relative; width: 100%;">
-        <input type="text" id="task_name" name="task_name" required autocomplete="off" style="font-family: monospace; padding-right: 2.5em; width: 100%; box-sizing: border-box;" size="36" maxlength="36" oninput="updateCharCount('task_name', 36)">
+        <input type="text" id="task_name" name="task_name" required autocomplete="off"
+          style="font-family: monospace; padding-right: 2.5em; width: 100%; box-sizing: border-box;" size="36"
+          maxlength="36" oninput="updateCharCount('task_name', 36); replaceSmartQuotes()" class="prevent-smart-quotes">
         <span id="task_name_count" class="char-count">36</span>
       </div>
 
       <label for="assignee">Assignee:</label>
       <div style="position: relative; width: 100%;">
-        <input type="text" id="assignee" name="assignee" autocomplete="off" style="font-family: monospace; padding-right: 2.5em; width: 100%; box-sizing: border-box;" size="33" maxlength="33" oninput="updateCharCount('assignee', 33)">
+        <input type="text" id="assignee" name="assignee" autocomplete="off"
+          style="font-family: monospace; padding-right: 2.5em; width: 100%; box-sizing: border-box;" size="33"
+          maxlength="33" oninput="updateCharCount('assignee', 33); replaceSmartQuotes()" class="prevent-smart-quotes">
         <span id="assignee_count" class="char-count">33</span>
       </div>
 
       <label for="details">Details:</label>
       <textarea id="details" name="details" rows="4" cols="46" wrap="hard" style="font-family: monospace;"
-        autocomplete="off"></textarea>
+        autocomplete="off" class="prevent-smart-quotes" oninput="replaceSmartQuotes()"></textarea>
 
       <label for="due_date">Due Date:</label>
       <input type="date" id="due_date" name="due_date" required autocomplete="off"
@@ -52,10 +56,20 @@
       count.textContent = left;
     }
     // Initialize counts on page load
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       updateCharCount('task_name', 36);
       updateCharCount('assignee', 33);
     });
+
+    // disable the use of smart quotes
+    function replaceSmartQuotes() {
+      document.querySelectorAll('.prevent-smart-quotes').forEach(function (input) {
+        input.value = input.value
+          .replace(/[“”]/g, '"') // Replace left and right double curly quotes with regular quotes
+          .replace(/[‘’]/g, "'"); // Replace left and right single curly quotes with regular quotes
+      });
+    }
+
   </script>
 </body>
 
