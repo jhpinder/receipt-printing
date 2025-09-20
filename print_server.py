@@ -31,7 +31,7 @@ def print_task():
 
         # Connect to printer
         try:
-            printer = Network(printer_ip)
+            printer = Network(printer_ip, timeout=5)
         except Exception as e:
             flash(f"Printer connection failed: {e}")
             return redirect(url_for('print_task'))
@@ -51,7 +51,7 @@ def print_task():
             printer.ln()
             printer.text(f"{wrapped_task_name}\n\n{assignee_text}Due: {formatted_due_date}\n{details_block}")
         except Exception as e:
-            flash(f"Failed to print text: {e}")
+            flash(f"Failed to print: {e}")
             return redirect(url_for('print_task'))
 
         # Print image if provided
