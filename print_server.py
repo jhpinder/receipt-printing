@@ -42,7 +42,7 @@ def print_task():
         wrapped_task_name = textwrap.fill("Task: " + (task_name or ''), width=max_width).strip()
         # Print details exactly as entered, preserving user line breaks
         if details:
-            details_block = f"------------------- Details -------------------\n{details}\n"
+            details_block = f"\n------------------- Details -------------------\n{details}\n"
             details_block += "------------------------------------------------\n"
         else:
             details_block = ''
@@ -92,7 +92,7 @@ def print_task():
                 return redirect(url_for('print_task'))
 
         try:
-            printer.ln(3)
+            printer.ln(2)
             printer.text(datetime.now().strftime("Printed on %m-%d-%Y at %H:%M:%S\n"))
             printer.ln()
             printer.cut()
