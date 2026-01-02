@@ -65,8 +65,12 @@
     function replaceSmartQuotes() {
       document.querySelectorAll('.prevent-smart-quotes').forEach(function (input) {
         input.value = input.value
-          .replace(/[“”]/g, '"') // Replace left and right double curly quotes with regular quotes
-          .replace(/[‘’]/g, "'"); // Replace left and right single curly quotes with regular quotes
+          .replace(/[“”]/g, '"')  // Replace left and right double curly quotes with regular quotes
+          .replace(/[‘’]/g, "'")  // Replace left and right single curly quotes with regular quotes
+          .replace(/[‚]/g, "'")   // Opening single quote
+          .replace(/[–]/g, '-')   // En dash
+          .replace(/[—]/g, '-')   // Em dash
+          .replace(/[…]/g, '...'); // Ellipsis
       });
     }
 
